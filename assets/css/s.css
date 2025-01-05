@@ -191,7 +191,10 @@ main {
   grid-template-columns: 1fr 1fr;
   gap: 30px;
   margin-top: 50px;
+  width: 100%;
+  height: 350px; /* C'est ici que la taille du graphique est définie */
 }
+
 
 .charts__left {
   padding: 25px;
@@ -230,7 +233,7 @@ main {
 }
 
 .charts__right {
-  padding: 25px;
+  padding: 30px;
   border-radius: 5px;
   background: #ffffff;
   box-shadow: 5px 5px 13px #ededed, -5px -5px 13px #ffffff;

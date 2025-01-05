@@ -1,0 +1,20 @@
+{
+  "dependencies": {
+    "body-parser": "^1.20.3",
+    "cors": "^2.8.5",
+    "express": "^4.21.2",
+    "express-session": "^1.18.1",
+    "mysql": "^2.18.1"
+  },
+  "name": "mymanager",
+  "version": "1.0.0",
+  "description": "1er etape \r j ai essaye de travaillé sur le login d utiliser deux acteurs \r admin et user j ai utilise JSON pour communiquer avec une base de données MySQL\r la table => \r <CREATE DATABASE mymanager;\r USE mymanager;\r CREATE TABLE users (\r   id INT AUTO_INCREMENT PRIMARY KEY,\r   username VARCHAR(50) NOT NULL,\r   password VARCHAR(50) NOT NULL,\r   role ENUM('admin', 'user') NOT NULL\r );",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

@@ -1,87 +1,59 @@
-// Vérification de la connexion
-if (!localStorage.getItem('token')) {
-  window.location.href = '/index.html'; // Redirige l'utilisateur si non connecté
+// Fonction pour récupérer les données de l'API
+function fetchDashboardData() {
+  document.getElementById("loadingMessage").style.display = "block"; // Afficher le message de chargement
+  fetch("http://localhost:3000/stats")
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error("Erreur HTTP: " + response.status);
+      }
+      return response.json();
+    })
+    .then((data) => {
+      console.log(data); // Afficher les données dans la console
+
+      // Mise à jour des éléments dans les cartes avec les données récupérées
+      document.getElementById("usersCount").innerText = data.users_count || 0;
+      document.getElementById("vehiclesCount").innerText = data.vehicles_count || 0;
+      document.getElementById("clientsCount").innerText = data.clients_count || 0;
+      document.getElementById("repairsCount").innerText = data.repairs_count || 0;
+
+      // Mise à jour du graphique
+      var options = {
+        series: [
+          { name: "Net Profit", data: data.net_profit || [] }, // Assurez-vous que les données existent
+          { name: "Revenue", data: data.revenue || [] },
+          { name: "Free Cash Flow", data: data.free_cash_flow || [] },
+        ],
+        chart: {
+          type: "bar",
+          height: 250,
+          sparkline: { enabled: true },
+        },
+        plotOptions: {
+          bar: { horizontal: false, columnWidth: "55%", endingShape: "rounded" },
+        },
+        xaxis: {
+          categories: data.months || [], // Assurez-vous que les mois sont disponibles
+        },
+        yaxis: {
+          title: { text: "$ (thousands)" },
+        },
+        tooltip: {
+          y: { formatter: (val) => "$ " + val + " thousands" },
+        },
+      };
+
+      var chart = new ApexCharts(document.querySelector("#apex2"), options);
+      chart.render();
+
+      // Cacher le message de chargement une fois les données chargées
+      document.getElementById("loadingMessage").style.display = "none";
+    })
+    .catch((error) => {
+      console.error("Erreur lors de la récupération des données:", error);
+      document.getElementById("loadingMessage").style.display = "none";
+    });
 }
 
-// This is for able to see chart. We are using Apex Chart. U can check the documentation of Apex Charts too..
-var options = {
- series: [
-   {
-     name: "Net Profit",
-     data: [44, 55, 57, 56, 61, 58, 63, 60, 66],
-   },
-   {
-     name: "Revenue",
-     data: [76, 85, 101, 98, 87, 105, 91, 114, 94],
-   },
-   {
-     name: "Free Cash Flow",
-     data: [35, 41, 36, 26, 45, 48, 52, 53, 41],
-   },
- ],
- chart: {
-   type: "bar",
-   height: 250, // make this 250
-   sparkline: {
-     enabled: true, // make this true
-   },
- },
- plotOptions: {
-   bar: {
-     horizontal: false,
-     columnWidth: "55%",
-     endingShape: "rounded",
-   },
- },
- dataLabels: {
-   enabled: false,
- },
- stroke: {
-   show: true,
-   width: 2,
-   colors: ["transparent"],
- },
- xaxis: {
-   categories: ["Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct"],
- },
- yaxis: {
-   title: {
-     text: "$ (thousands)",
-   },
- },
- fill: {
-   opacity: 1,
- },
- tooltip: {
-   y: {
-     formatter: function (val) {
-       return "$ " + val + " thousands";
-     },
-   },
- },
-};
-
-var chart = new ApexCharts(document.querySelector("#apex1"), options);
-chart.render();
-
-// Sidebar Toggle Codes;
-
-var sidebarOpen = false;
-var sidebar = document.getElementById("sidebar");
-var sidebarCloseIcon = document.getElementById("sidebarIcon");
-
-function toggleSidebar() {
- if (!sidebarOpen) {
-   sidebar.classList.add("sidebar_responsive");
-   sidebarOpen = true;
- }
-}
-
-function closeSidebar() {
- if (sidebarOpen) {
-   sidebar.classList.remove("sidebar_responsive");
-   sidebarOpen = false;
- }
-}
-
-
+// Appeler la fonction pour récupérer les données au chargement de la page
+document.addEventListener("DOMContentLoaded", fetchDashboardData);

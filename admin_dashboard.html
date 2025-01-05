@@ -12,14 +12,13 @@
     <link rel="stylesheet" href="assets/css/s.css" />
     <title>CSS GRID DASHBOARD</title>
   </head>
-  <body id="body">
+  <body>
     <div class="container">
       <nav class="navbar">
         <div class="nav_icon" onclick="toggleSidebar()">
           <i class="fa fa-bars" aria-hidden="true"></i>
         </div>
         <div class="navbar__left">
-          
           <a class="active_link" href="#">Admin</a>
         </div>
         <div class="navbar__right">
@@ -31,15 +30,12 @@
           </a>
           <a href="#">
             <img width="30" src="assets/avatar.svg" alt="" />
-            <!-- <i class="fa fa-user-circle-o" aria-hidden="true"></i> -->
           </a>
         </div>
       </nav>
 
       <main>
         <div class="main__container">
-          <!-- MAIN TITLE STARTS HERE -->
-
           <div class="main__title">
             <img src="assets/hello.svg" alt="" />
             <div class="main__greeting">
@@ -48,99 +44,52 @@
             </div>
           </div>
 
-          <!-- MAIN TITLE ENDS HERE -->
-
-          <!-- MAIN CARDS STARTS HERE -->
           <div class="main__cards">
             <div class="card">
-              <i
-                class="fa fa-user-o fa-2x text-lightblue"
-                aria-hidden="true"
-              ></i>
+              <i class="fa fa-user-o fa-2x text-lightblue" aria-hidden="true"></i>
               <div class="card_inner">
-                <p class="text-primary-p">Number of Subscribers</p>
-                <span class="font-bold text-title">578</span>
+                <p class="text-primary-p">Nombre de Users</p>
+                <span class="font-bold text-title" id="usersCount">0</span>
               </div>
             </div>
 
             <div class="card">
-              <i class="fa fa-calendar fa-2x text-red" aria-hidden="true"></i>
+              <i class="fa fa-car fa-2x text-red" aria-hidden="true"></i>
               <div class="card_inner">
-                <p class="text-primary-p">Times of Watching</p>
-                <span class="font-bold text-title">2467</span>
+                <p class="text-primary-p">Nombre de vehicule</p>
+                <span class="font-bold text-title" id="vehiclesCount">0</span>
               </div>
             </div>
 
             <div class="card">
-              <i
-                class="fa fa-video-camera fa-2x text-yellow"
-                aria-hidden="true"
-              ></i>
+              <i class="fa fa-user-secret fa-2x text-green" aria-hidden="true"></i>
               <div class="card_inner">
-                <p class="text-primary-p">Number of Videos</p>
-                <span class="font-bold text-title">340</span>
+                <p class="text-primary-p">Nombre de client</p>
+                <span class="font-bold text-title" id="clientsCount">0</span>
               </div>
             </div>
 
             <div class="card">
-              <i
-                class="fa fa-thumbs-up fa-2x text-green"
-                aria-hidden="true"
-              ></i>
+              <i class="fa fa-wrench fa-2x text-green" aria-hidden="true"></i>
               <div class="card_inner">
-                <p class="text-primary-p">Number of Likes</p>
-                <span class="font-bold text-title">645</span>
+                <p class="text-primary-p">Nombre de réparation</p>
+                <span class="font-bold text-title" id="repairsCount">0</span>
               </div>
             </div>
           </div>
-          <!-- MAIN CARDS ENDS HERE -->
 
-          <!-- CHARTS STARTS HERE -->
           <div class="charts">
             <div class="charts__left">
               <div class="charts__left__title">
                 <div>
-                  <h1>Daily Reports</h1>
-                  <p>Cupertino, California, USA</p>
+                  <h1>Repairs Report</h1>
+                  <p>Oulfa, Casablanca, Maroc</p>
                 </div>
-                <i class="fa fa-usd" aria-hidden="true"></i>
+                <i class="fa fa-wrench" aria-hidden="true"></i>
               </div>
-              <div id="apex1"></div>
-            </div>
-
-            <div class="charts__right">
-              <div class="charts__right__title">
-                <div>
-                  <h1>Stats Reports</h1>
-                  <p>Cupertino, California, USA</p>
-                </div>
-                <i class="fa fa-usd" aria-hidden="true"></i>
-              </div>
-
-              <div class="charts__right__cards">
-                <div class="card1">
-                  <h1>Income</h1>
-                  <p>$75,300</p>
-                </div>
-
-                <div class="card2">
-                  <h1>Sales</h1>
-                  <p>$124,200</p>
-                </div>
-
-                <div class="card3">
-                  <h1>Users</h1>
-                  <p>3900</p>
-                </div>
-
-                <div class="card4">
-                  <h1>Orders</h1>
-                  <p>1881</p>
-                </div>
-              </div>
+              <div id="repairsChart"></div>
             </div>
           </div>
-          <!-- CHARTS ENDS HERE -->
         </div>
       </main>
 
@@ -150,12 +99,7 @@
             <img src="assets/logo.png" alt="logo" />
             <h1>Codersbite</h1>
           </div>
-          <i
-            onclick="closeSidebar()"
-            class="fa fa-times"
-            id="sidebarIcon"
-            aria-hidden="true"
-          ></i>
+          <i onclick="closeSidebar()" class="fa fa-times" id="sidebarIcon" aria-hidden="true"></i>
         </div>
 
         <div class="sidebar__menu">
@@ -165,63 +109,101 @@
           </div>
           <h2>MNG</h2>
           <div class="sidebar__link">
-            <i class="fa fa-user-secret" aria-hidden="true"></i>
+            <i class="fa fa-user-o fa-2x text-black" aria-hidden="true"></i>
             <a href="Gestion des utilisateurs.html">Ajouter des utilisateurs</a>
           </div>
           <div class="sidebar__link">
-            <i class="fa fa-building-o"></i>
+            <i class="fa fa-user-secret"></i>
             <a href="addclients.html">Ajouter Des Clients</a>
           </div>
           <div class="sidebar__link">
-            <i class="fa fa-wrench"></i>
+            <i class=" fa fa-car"></i>
             <a href="addvehicule.html">Ajouter une vehicule</a>
           </div>
           <div class="sidebar__link">
-            <i class="fa fa-archive"></i>
-            <a href="#">Warehouse</a>
+            <i class="fa fa-wrench"></i>
+            <a href="addreparation.html">Ajouter reparation</a>
           </div>
-          <div class="sidebar__link">
-            <i class="fa fa-handshake-o"></i>
-            <a href="#">Contracts</a>
-          </div>
-          <h2>LEAVE</h2>
-          <div class="sidebar__link">
-            <i class="fa fa-question"></i>
-            <a href="#">Requests</a>
-          </div>
-          <div class="sidebar__link">
-            <i class="fa fa-sign-out"></i>
-            <a href="#">Leave Policy</a>
-          </div>
-          <div class="sidebar__link">
-            <i class="fa fa-calendar-check-o"></i>
-            <a href="#">Special Days</a>
-          </div>
-          <div class="sidebar__link">
-            <i class="fa fa-files-o"></i>
-            <a href="#">Apply for leave</a>
-          </div>
-          <h2>PAYROLL</h2>
-          <div class="sidebar__link">
-            <i class="fa fa-money"></i>
-            <a href="#">Payroll</a>
-          </div>
-          <div class="sidebar__link">
-            <i class="fa fa-briefcase"></i>
-            <a href="#">Paygrade</a>
-          </div>
+
           <div class="sidebar__logout">
             <i class="fa fa-power-off"></i>
-            <a href="#" id="logoutButton">Log out</a>
-        </div>
+            <a href="#" id="logoutButton" onclick="logoutAdmin()">Log out</a>
+          </div>
         </div>
       </div>
     </div>
-    
- 
-    
+
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
-    <script src="assets/js/dashboard.js"></script>
+
+    <script>
+      // Fonction pour récupérer les données de l'API
+      function fetchDashboardData() {
+        fetch("http://localhost:3000/stats") // Ton API pour récupérer les données
+          .then(response => response.json())
+          .then(data => {
+            // Mise à jour des valeurs des cartes
+            document.getElementById("usersCount").innerText = data.users_count;
+            document.getElementById("vehiclesCount").innerText = data.vehicles_count;
+            document.getElementById("clientsCount").innerText = data.clients_count;
+            document.getElementById("repairsCount").innerText = data.repairs_count;
+
+            // Graphique des réparations
+            var repairsData = {
+              series: [{
+                name: 'Réparations',
+                data: data.repairs_data, // Attends un tableau avec les coûts ou le nombre de réparations
+              }],
+              chart: {
+                height: 350,
+                type: 'line',
+              },
+              xaxis: {
+                categories: data.repairs_dates, // Ex: ['2025-01-01', '2025-02-01']
+              },
+              yaxis: {
+                title: {
+                  text: 'Coût des réparations'
+                }
+              },
+            };
+            var chart = new ApexCharts(document.querySelector("#repairsChart"), repairsData);
+            chart.render();
+          })
+          .catch(error => console.error("Erreur lors de la récupération des données:", error));
+      }
+
+      // Appeler la fonction pour récupérer les données au chargement de la page
+      document.addEventListener("DOMContentLoaded", fetchDashboardData);
+    </script>
+     <script>
+      function logoutAdmin() {
+        fetch("http://localhost:3000/logout", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+        })
+        .then((response) => {
+            if (!response.ok) {
+                throw new Error('Erreur HTTP: ' + response.status);
+            }
+            return response.json();
+        })
+        .then((data) => {
+            if (data.message === 'Déconnexion réussie') {
+                sessionStorage.removeItem('username');
+                sessionStorage.removeItem('role');
+                window.location.href = "index.html";  // ou la page de redirection
+            } else {
+                console.error("Erreur de déconnexion : " + data.message);
+            }
+        })
+        .catch((error) => {
+            console.error("Erreur lors de la déconnexion :", error);
+            alert("Une erreur est survenue lors de la déconnexion.");
+        });
+    }
     
+    </script>
   </body>
 </html>
